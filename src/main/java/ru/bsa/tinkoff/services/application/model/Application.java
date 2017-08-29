@@ -1,11 +1,15 @@
 package ru.bsa.tinkoff.services.application.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class Application implements Serializable {
 
     private static final long serialVersionUID = -7367969390786288054L;
+
+
 
     private final String productName;
     private final int applicationId;

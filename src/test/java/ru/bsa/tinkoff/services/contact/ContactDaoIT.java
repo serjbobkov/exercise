@@ -25,11 +25,9 @@ public class ContactDaoIT {
     @Inject
     private DataSource dataSource;
 
-
     @Test
     @Transactional
     public void insert() {
-
 
         Contact contact = contactDao.insert(10);
 
