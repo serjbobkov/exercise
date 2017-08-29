@@ -1,0 +1,19 @@
+app:
+    name: exercise
+
+server:
+    port: 8080
+
+spring:
+    datasource:
+        url: jdbc:h2:mem:db
+    jooq:
+        sql-dialect: H2
+cxf:
+    path: /exercise
+    servlet.init:
+        service-list-path: /info
+
+
+
+
