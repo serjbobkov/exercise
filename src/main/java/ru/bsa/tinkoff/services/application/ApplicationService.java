@@ -9,14 +9,15 @@ import java.util.Date;
 
 public interface ApplicationService {
 
+    @Nonnull
+    Application addApplication(@Nonnull String productName,
+                               @Nonnull Date dtCreated,
+                               @Nonnull Contact contact);
+    @Nonnull
+    Application findApplication(int applicationId) throws ApplicationNotFoundException;
 
-    Application addApplication(@Nonnull final String productName,
-                               @Nonnull final Date dtCreated,
-                               @Nonnull final Contact contact);
-
-    Application findApplication(final int applicationId) throws ApplicationNotFoundException;
-
-    Application findLastApplication(@Nonnull final Contact contact) throws ApplicationNotFoundException;
+    @Nonnull
+    Application findLastApplication(final Contact contact) throws ApplicationNotFoundException;
 
 
 }

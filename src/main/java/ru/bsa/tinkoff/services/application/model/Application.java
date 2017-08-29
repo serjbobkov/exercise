@@ -1,6 +1,5 @@
 package ru.bsa.tinkoff.services.application.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -8,7 +7,6 @@ import java.util.Date;
 public class Application implements Serializable {
 
     private static final long serialVersionUID = -7367969390786288054L;
-
 
 
     private final String productName;
@@ -39,38 +37,6 @@ public class Application implements Serializable {
 
     public int getContactId() {
         return contactId;
-    }
-
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Application that = (Application) o;
-
-        if (applicationId != that.applicationId) {
-            return false;
-        }
-        if (contactId != that.contactId) {
-            return false;
-        }
-        if (productName != null ? !productName.equals(that.productName) : that.productName != null) {
-            return false;
-        }
-        return dtCreated != null ? dtCreated.equals(that.dtCreated) : that.dtCreated == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = productName != null ? productName.hashCode() : 0;
-        result = 31 * result + applicationId;
-        result = 31 * result + (dtCreated != null ? dtCreated.hashCode() : 0);
-        result = 31 * result + contactId;
-        return result;
     }
 
     @Override

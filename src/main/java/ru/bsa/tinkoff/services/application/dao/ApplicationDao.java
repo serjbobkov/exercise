@@ -53,11 +53,18 @@ public class ApplicationDao {
                         r.get(APPLICATIONS.APPLICATION_ID), r.get(APPLICATIONS.DT_CREATED), r.get(APPLICATIONS.CONTACT)));
     }
 
+
     public Optional<Application> findLast(final Contact contact) {
+
+        //select * from app where id=? and ts=(select max(ts) from app where id=?)
+
         return jooq.selectFrom(APPLICATIONS)
                 .where(APPLICATIONS.CONTACT.eq(contact.getContactId()))
-                .orderBy(APPLICATIONS.DT_CREATED.desc())
-                .limit(1)
+                .and(APPLICATIONS.DT_CREATED.eq(
+                        jooq.select(APPLICATIONS.DT_CREATED.max())
+                                .from(APPLICATIONS).where(APPLICATIONS.CONTACT.eq(contact.getContactId()))
+                        )
+                ).orderBy(APPLICATIONS.APPLICATION_ID.desc()).limit(1)
                 .fetchOptional(r -> new Application(r.get(APPLICATIONS.PRODUCT_NAME),
                         r.get(APPLICATIONS.APPLICATION_ID), r.get(APPLICATIONS.DT_CREATED), r.get(APPLICATIONS.CONTACT)));
     }

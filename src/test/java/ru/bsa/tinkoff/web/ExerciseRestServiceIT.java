@@ -21,7 +21,6 @@ import static org.mockito.Mockito.when;
 
 
 import ru.bsa.tinkoff.services.application.ApplicationService;
-import ru.bsa.tinkoff.services.application.exception.ApplicationNotFoundException;
 import ru.bsa.tinkoff.services.application.model.Application;
 import ru.bsa.tinkoff.services.contact.ContactService;
 import ru.bsa.tinkoff.services.contact.exception.ContactNotFoundException;
@@ -34,7 +33,6 @@ import java.util.Date;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc
 public class ExerciseRestServiceIT {
 
     @MockBean
@@ -61,14 +59,15 @@ public class ExerciseRestServiceIT {
 
         WebClient client = WebClient.create("http://localhost:"+port+"/exercise/", Collections.singletonList(jsonProvider));
         client.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON);
-        client.type(javax.ws.rs.core.MediaType.APPLICATION_JSON);
         client.path("/api/application/last/10");
 
 
 
         Response resp = client.get();
 
-        assertThat(Response.Status.OK.getStatusCode()).isEqualTo(resp.getStatus());
+        assertThat(resp.getStatus()).isEqualTo(Response.Status.OK.getStatusCode());
+        assertThat(resp.getMediaType()).isEqualTo(MediaType.APPLICATION_JSON_TYPE);
+
         ApplicationResponse app = resp.readEntity(ApplicationResponse.class);
 
         assertThat(app).isNotNull();
@@ -93,12 +92,12 @@ public class ExerciseRestServiceIT {
 
         WebClient client = WebClient.create("http://localhost:"+port+"/exercise/", Collections.singletonList(provider));
         client.accept(MediaType.APPLICATION_XML);
-        client.type(MediaType.APPLICATION_XML);
         client.path("/api/application/last/10");
 
         Response resp = client.get();
 
-        assertThat(Response.Status.OK.getStatusCode()).isEqualTo(resp.getStatus());
+        assertThat(resp.getStatus()).isEqualTo(Response.Status.OK.getStatusCode());
+        assertThat(resp.getMediaType()).isEqualTo(MediaType.APPLICATION_XML_TYPE);
 
         ApplicationResponse app = resp.readEntity(ApplicationResponse.class);
 
@@ -125,7 +124,8 @@ public class ExerciseRestServiceIT {
         client.accept(MediaType.APPLICATION_JSON);
 
         Response resp = client.get();
-        assertThat(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode()).isEqualTo(resp.getStatus());
+        assertThat(resp.getStatus()).isEqualTo(Response.Status.NOT_FOUND.getStatusCode());
+        assertThat(resp.getMediaType()).isEqualTo(MediaType.APPLICATION_JSON_TYPE);
 
         ErrorDetail errorDetail = resp.readEntity(ErrorDetail.class);
         assertThat(errorDetail.getErrorMessage()).isEqualTo("Contact with id = 10 not found");
@@ -146,7 +146,8 @@ public class ExerciseRestServiceIT {
         client.accept(MediaType.APPLICATION_XML);
 
         Response resp = client.get();
-        assertThat(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode()).isEqualTo(resp.getStatus());
+        assertThat(resp.getStatus()).isEqualTo(Response.Status.NOT_FOUND.getStatusCode());
+        assertThat(resp.getMediaType()).isEqualTo(MediaType.APPLICATION_XML_TYPE);
 
         ErrorDetail errorDetail = resp.readEntity(ErrorDetail.class);
         assertThat(errorDetail.getErrorMessage()).isEqualTo("Contact with id = 10 not found");

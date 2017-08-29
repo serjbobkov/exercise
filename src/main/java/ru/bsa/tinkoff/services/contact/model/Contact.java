@@ -7,14 +7,11 @@ public class Contact implements Serializable {
 
     private static final long serialVersionUID = -6705441617941413187L;
 
-
     private final int contactId;
-
 
     public Contact(final int accountId) {
         this.contactId = accountId;
     }
-
 
     public int getContactId() {
         return contactId;

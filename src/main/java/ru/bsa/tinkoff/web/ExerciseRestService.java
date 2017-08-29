@@ -14,7 +14,7 @@ public interface ExerciseRestService {
     @GET
     @Path("/application/last/{contactId}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    ApplicationResponse getLastApplication(@PathParam("contactId") final int contactId) throws ApplicationNotFoundException, ContactNotFoundException;
+    ApplicationResponse getLastApplication(@PathParam("contactId") int contactId) throws ApplicationNotFoundException, ContactNotFoundException;
 
 
 }

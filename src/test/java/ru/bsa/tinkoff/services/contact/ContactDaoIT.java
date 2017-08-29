@@ -51,8 +51,8 @@ public class ContactDaoIT {
 
         assertThat(contactDao.findContact(10))
                 .isPresent()
-                .hasValueSatisfying(sc -> {
-                    assertThat(sc).isEqualToComparingFieldByFieldRecursively(contact);
+                .hasValueSatisfying(a -> {
+                    assertThat(a).isEqualToComparingFieldByFieldRecursively(contact);
                 });
     }
 

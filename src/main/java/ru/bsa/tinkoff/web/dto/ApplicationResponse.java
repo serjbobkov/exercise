@@ -11,16 +11,16 @@ public class ApplicationResponse {
 
 
     @JsonProperty("PRODUCT_NAME")
-    private  String productName;
+    private String productName;
 
     @JsonProperty("APPLICATION_ID")
-    private  int applicationId;
+    private int applicationId;
 
     @JsonProperty("DT_CREATED")
-    private  Date dtCreated;
+    private Date dtCreated;
 
     @JsonProperty("CONTACT_ID")
-    private  int contactId;
+    private int contactId;
 
 
     public ApplicationResponse(final String productName, final int applicationId, final Date dtCreated, final int contactId) {

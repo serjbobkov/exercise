@@ -1,7 +1,5 @@
 package ru.bsa.tinkoff.web.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 

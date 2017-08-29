@@ -4,7 +4,6 @@ import org.jooq.impl.DefaultDSLContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import ru.bsa.tinkoff.jooq.tables.records.ContactsRecord;
 import ru.bsa.tinkoff.services.contact.model.Contact;
 
 import static ru.bsa.tinkoff.jooq.tables.Contacts.CONTACTS;

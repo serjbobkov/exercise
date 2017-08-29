@@ -79,8 +79,8 @@ public class ApplicationDaoIT {
 
         assertThat(applicationDao.find(app.getApplicationId()))
                 .isPresent()
-                .hasValueSatisfying(sc -> {
-                    assertThat(sc).isEqualToComparingFieldByFieldRecursively(app);
+                .hasValueSatisfying(a -> {
+                    assertThat(a).isEqualToComparingFieldByFieldRecursively(app);
                 });
     }
 
@@ -101,8 +101,8 @@ public class ApplicationDaoIT {
 
         assertThat(applicationDao.findLast(contact))
                 .isPresent()
-                .hasValueSatisfying(sc -> {
-                    assertThat(sc).isEqualToComparingFieldByFieldRecursively(application);
+                .hasValueSatisfying(a -> {
+                    assertThat(a).isEqualToComparingFieldByFieldRecursively(application);
                 });
     }
 
